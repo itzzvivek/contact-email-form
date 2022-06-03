@@ -6,7 +6,7 @@ from django.http import HttpResponse
 # Create your views here.
 
 def homepage(request):
-    return render(request, "home.html")
+    return render(request, "core/home.html")
 
 def contact(request):
     if request.method == 'POST':
@@ -26,7 +26,7 @@ def contact(request):
                 send_mail(subject, message, 'admin@example.com', ['admin@example.com'])
             except BadHeaderError:
                 return HttpResponse('Invalid header found.')   
-            return redirect("core:homepage")
+            return redirect("templates:homepage")
 
     form = ContactForm()
-    return render(request, "index.html", {'form':form}) 
+    return render(request, "templates/index.html", {'form':form}) 
